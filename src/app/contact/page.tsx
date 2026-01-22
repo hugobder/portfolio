@@ -78,7 +78,7 @@ export default function ContactPage() {
                 </div>
                 <div>
                   <h3 className="font-medium">Email</h3>
-                  <p className="text-sm text-muted-foreground">hello@example.com</p>
+                  <p className="text-sm text-muted-foreground">hugobruder62@gmail.com</p>
                 </div>
               </CardContent>
             </Card>
@@ -90,7 +90,7 @@ export default function ContactPage() {
                 </div>
                 <div>
                   <h3 className="font-medium">Phone</h3>
-                  <p className="text-sm text-muted-foreground">+1 (555) 123-4567</p>
+                  <p className="text-sm text-muted-foreground">+33 7 87 29 42 41</p>
                 </div>
               </CardContent>
             </Card>
