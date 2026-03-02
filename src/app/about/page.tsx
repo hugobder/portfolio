@@ -59,9 +59,11 @@ export default async function AboutPage() {
                   Contact Me
                 </Link>
               </Button>
-              <Button variant="outline">
-                <Download className="h-4 w-4 mr-2" />
-                Download CV
+              <Button variant="outline" asChild>
+                <a href="/cv.pdf" download>
+                  <Download className="h-4 w-4 mr-2" />
+                  Download CV
+                </a>
               </Button>
             </div>
           </div>
@@ -70,7 +72,7 @@ export default async function AboutPage() {
           <div className="grid grid-cols-2 gap-4">
             <Card>
               <CardContent className="p-6 text-center">
-                <div className="text-4xl font-bold text-primary mb-2">5+</div>
+                <div className="text-4xl font-bold text-primary mb-2">2+</div>
                 <div className="text-sm text-muted-foreground">
                   Years Experience
                 </div>
@@ -78,7 +80,7 @@ export default async function AboutPage() {
             </Card>
             <Card>
               <CardContent className="p-6 text-center">
-                <div className="text-4xl font-bold text-primary mb-2">50+</div>
+                <div className="text-4xl font-bold text-primary mb-2">10+</div>
                 <div className="text-sm text-muted-foreground">
                   Projects Completed
                 </div>
@@ -86,15 +88,7 @@ export default async function AboutPage() {
             </Card>
             <Card>
               <CardContent className="p-6 text-center">
-                <div className="text-4xl font-bold text-primary mb-2">30+</div>
-                <div className="text-sm text-muted-foreground">
-                  Happy Clients
-                </div>
-              </CardContent>
-            </Card>
-            <Card>
-              <CardContent className="p-6 text-center">
-                <div className="text-4xl font-bold text-primary mb-2">10+</div>
+                <div className="text-4xl font-bold text-primary mb-2">5+</div>
                 <div className="text-sm text-muted-foreground">
                   Technologies
                 </div>
@@ -119,12 +113,11 @@ export default async function AboutPage() {
             </div>
           ) : (
             <div className="grid md:grid-cols-2 gap-6">
-              <SkillBar name="JavaScript" level={90} index={0} />
-              <SkillBar name="TypeScript" level={85} index={1} />
-              <SkillBar name="React" level={90} index={2} />
-              <SkillBar name="Next.js" level={85} index={3} />
-              <SkillBar name="Node.js" level={80} index={4} />
-              <SkillBar name="Python" level={75} index={5} />
+              <SkillBar name="JavaScript" level={70} index={0} />
+              <SkillBar name="TypeScript" level={50} index={1} />
+              <SkillBar name="React" level={60} index={2} />
+              <SkillBar name="Node.js" level={60} index={4} />
+              <SkillBar name="Python" level={70} index={5} />
             </div>
           )}
         </div>
@@ -136,39 +129,12 @@ export default async function AboutPage() {
             <Card>
               <CardContent className="p-6">
                 <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-2">
-                  <h3 className="text-lg font-semibold">Senior Developer</h3>
-                  <span className="text-sm text-muted-foreground">2022 - Present</span>
+                  <h3 className="text-lg font-semibold">Internship Developer</h3>
+                  <span className="text-sm text-muted-foreground">2024 - Present</span>
                 </div>
-                <p className="text-primary font-medium mb-2">Tech Company Inc.</p>
+                <p className="text-primary font-medium mb-2">CashMag</p>
                 <p className="text-muted-foreground">
-                  Leading development of web applications using modern technologies.
-                  Mentoring junior developers and implementing best practices.
-                </p>
-              </CardContent>
-            </Card>
-            <Card>
-              <CardContent className="p-6">
-                <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-2">
-                  <h3 className="text-lg font-semibold">Full Stack Developer</h3>
-                  <span className="text-sm text-muted-foreground">2020 - 2022</span>
-                </div>
-                <p className="text-primary font-medium mb-2">Startup XYZ</p>
-                <p className="text-muted-foreground">
-                  Built and maintained multiple web applications from scratch.
-                  Worked closely with design and product teams.
-                </p>
-              </CardContent>
-            </Card>
-            <Card>
-              <CardContent className="p-6">
-                <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-2">
-                  <h3 className="text-lg font-semibold">Junior Developer</h3>
-                  <span className="text-sm text-muted-foreground">2018 - 2020</span>
-                </div>
-                <p className="text-primary font-medium mb-2">Digital Agency</p>
-                <p className="text-muted-foreground">
-                  Started my career building websites and web applications
-                  for various clients across different industries.
+                  Learning basics of development and best practices in software development. Working on real-world projects and collaborating with experienced developers to enhance my skills and knowledge in the field.
                 </p>
               </CardContent>
             </Card>
