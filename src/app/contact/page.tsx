@@ -102,7 +102,7 @@ export default function ContactPage() {
                 </div>
                 <div>
                   <h3 className="font-medium">Location</h3>
-                  <p className="text-sm text-muted-foreground">San Francisco, CA</p>
+                  <p className="text-sm text-muted-foreground">Toulon, France</p>
                 </div>
               </CardContent>
             </Card>
