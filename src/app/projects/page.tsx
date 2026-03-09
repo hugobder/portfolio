@@ -4,8 +4,20 @@ import { getPublishedProjects } from "@/lib/data";
 export const dynamic = "force-dynamic";
 
 export const metadata = {
-  title: "Projects | Portfolio",
-  description: "Browse my portfolio of projects and work",
+  title: "Projects",
+  description:
+    "Browse Hugo Bruder's portfolio of web development projects built with React, Next.js, TypeScript, and Node.js.",
+  openGraph: {
+    title: "Projects | Hugo Bruder",
+    description:
+      "Browse Hugo Bruder's portfolio of web development projects built with React, Next.js, TypeScript, and Node.js.",
+    url: "/projects",
+  },
+  twitter: {
+    title: "Projects | Hugo Bruder",
+    description:
+      "Browse Hugo Bruder's portfolio of web development projects built with React, Next.js, TypeScript, and Node.js.",
+  },
 };
 
 export default async function ProjectsPage() {
