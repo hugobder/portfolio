@@ -46,7 +46,7 @@ export default async function Home() {
   const projects = await getPublishedProjects();
   const featuredProjects = projects.slice(0, 3);
 
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://hugobder.dev";
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://bruderhugo.fr";
 
   const jsonLd = {
     "@context": "https://schema.org",

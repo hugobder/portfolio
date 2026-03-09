@@ -35,7 +35,7 @@ export default async function AboutPage() {
   const bio = await getSetting<string>("bio");
   const skills = await getSetting<Skill[]>("skills") || [];
 
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://hugobder.dev";
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://bruderhugo.fr";
 
   const jsonLd = {
     "@context": "https://schema.org",
