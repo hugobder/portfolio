@@ -8,8 +8,20 @@ import { Download, Mail } from "lucide-react";
 export const dynamic = "force-dynamic";
 
 export const metadata = {
-  title: "About | Portfolio",
-  description: "Learn more about me, my skills, and my experience",
+  title: "About",
+  description:
+    "Learn more about Hugo Bruder – Full Stack Developer. My background, skills in React, Next.js, TypeScript, and professional experience.",
+  openGraph: {
+    title: "About | Hugo Bruder",
+    description:
+      "Learn more about Hugo Bruder – Full Stack Developer. My background, skills in React, Next.js, TypeScript, and professional experience.",
+    url: "/about",
+  },
+  twitter: {
+    title: "About | Hugo Bruder",
+    description:
+      "Learn more about Hugo Bruder – Full Stack Developer. My background, skills in React, Next.js, TypeScript, and professional experience.",
+  },
 };
 
 interface Skill {
@@ -23,8 +35,32 @@ export default async function AboutPage() {
   const bio = await getSetting<string>("bio");
   const skills = await getSetting<Skill[]>("skills") || [];
 
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://hugobder.dev";
+
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "ProfilePage",
+    mainEntity: {
+      "@type": "Person",
+      name,
+      jobTitle: title,
+      description: bio || undefined,
+      url: siteUrl,
+      email: "hugobruder62@gmail.com",
+      knowsAbout: skills.map((s: Skill) => s.name),
+      worksFor: {
+        "@type": "Organization",
+        name: "CashMag",
+      },
+    },
+  };
+
   return (
     <div className="container mx-auto px-4 py-16">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <div className="max-w-4xl mx-auto">
         {/* Header */}
         <div className="text-center mb-16">
