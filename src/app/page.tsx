@@ -4,8 +4,33 @@ import { Button } from "@/components/ui/button";
 import { getSetting, getPublishedProjects, initializeSettings } from "@/lib/data";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
+import type { Metadata } from "next";
 
 export const dynamic = "force-dynamic";
+
+export async function generateMetadata(): Promise<Metadata> {
+  await initializeSettings();
+  const name = await getSetting<string>("name") || "Hugo Bruder";
+  const title = await getSetting<string>("title") || "Full Stack Developer";
+  const bio = await getSetting<string>("bio");
+
+  const description = bio ||
+    `${name} – ${title}. Building modern web applications with React, Next.js, and TypeScript.`;
+
+  return {
+    title: `${name} | ${title}`,
+    description,
+    openGraph: {
+      title: `${name} | ${title}`,
+      description,
+      url: "/",
+    },
+    twitter: {
+      title: `${name} | ${title}`,
+      description,
+    },
+  };
+}
 
 export default async function Home() {
   // Initialize default settings if needed
@@ -21,8 +46,28 @@ export default async function Home() {
   const projects = await getPublishedProjects();
   const featuredProjects = projects.slice(0, 3);
 
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://bruderhugo.fr";
+
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    name,
+    jobTitle: title,
+    description: bio || undefined,
+    url: siteUrl,
+    email: "hugobruder62@gmail.com",
+    sameAs: [
+      socialLinks?.github,
+      socialLinks?.linkedin,
+    ].filter(Boolean),
+  };
+
   return (
     <div>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <Hero
         name={name}
         title={title}
