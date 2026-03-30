@@ -13,11 +13,6 @@ export const metadata = {
       "Browse Hugo Bruder's portfolio of web development projects built with React, Next.js, TypeScript, and Node.js.",
     url: "/projects",
   },
-  twitter: {
-    title: "Projects | Hugo Bruder",
-    description:
-      "Browse Hugo Bruder's portfolio of web development projects built with React, Next.js, TypeScript, and Node.js.",
-  },
 };
 
 export default async function ProjectsPage() {

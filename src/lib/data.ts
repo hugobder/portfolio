@@ -79,23 +79,22 @@ export async function getUnreadMessagesCount() {
 // Default settings for initial setup
 export const defaultSettings = {
   site_title: "Portfolio",
-  name: "John Doe",
+  name: "Bruder Hugo",
   title: "Full Stack Developer",
   bio: "I build modern web applications with cutting-edge technologies. Passionate about creating elegant solutions to complex problems.",
-  email: "hello@example.com",
+  email: "hugobruder62@gmail.com",
   social_links: {
     github: "https://github.com",
     linkedin: "https://linkedin.com",
-    twitter: "https://twitter.com",
   },
   skills: [
-    { name: "JavaScript", level: 90 },
-    { name: "TypeScript", level: 85 },
-    { name: "React", level: 90 },
-    { name: "Next.js", level: 85 },
+    { name: "JavaScript", level: 85 },
+    { name: "TypeScript", level: 70 },
+    { name: "React", level: 80 },
+    { name: "Next.js", level: 70 },
     { name: "Node.js", level: 80 },
-    { name: "Python", level: 75 },
-    { name: "SQL", level: 80 },
+    { name: "Python", level: 65 },
+    { name: "SQL", level: 60 },
     { name: "Docker", level: 70 },
   ],
 };

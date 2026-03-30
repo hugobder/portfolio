@@ -12,14 +12,14 @@ const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://bruderhugo.fr";
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: "Hugo Bruder | Full Stack Developer",
+    default: "Hugo Bruder | Junior Developer",
     template: "%s | Hugo Bruder",
   },
   description:
-    "Full Stack Developer specializing in modern web applications with React, Next.js, Node.js, and TypeScript. Available for freelance and internship opportunities.",
+    "Junior Developer specializing in modern web applications with React, Next.js, Node.js, and TypeScript. Available for freelance and internship opportunities.",
   keywords: [
     "Hugo Bruder",
-    "Full Stack Developer",
+    "Junior Developer",
     "React",
     "Next.js",
     "TypeScript",
@@ -34,16 +34,9 @@ export const metadata: Metadata = {
     locale: "en_US",
     url: siteUrl,
     siteName: "Hugo Bruder – Portfolio",
-    title: "Hugo Bruder | Full Stack Developer",
+    title: "Hugo Bruder | Junior Developer",
     description:
-      "Full Stack Developer specializing in modern web applications with React, Next.js, Node.js, and TypeScript.",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Hugo Bruder | Full Stack Developer",
-    description:
-      "Full Stack Developer specializing in modern web applications with React, Next.js, Node.js, and TypeScript.",
-    creator: "@hugobder",
+      "Junior Developer specializing in modern web applications with React, Next.js, Node.js, and TypeScript.",
   },
   robots: {
     index: true,

@@ -18,7 +18,6 @@ interface Skill {
 interface SocialLinks {
   github?: string;
   linkedin?: string;
-  twitter?: string;
 }
 
 interface Settings {
@@ -226,20 +225,6 @@ export default function AdminSettingsPage() {
               />
             </div>
 
-            <div className="space-y-2">
-              <Label htmlFor="twitter">Twitter</Label>
-              <Input
-                id="twitter"
-                placeholder="https://twitter.com/username"
-                value={settings.social_links.twitter || ""}
-                onChange={(e) =>
-                  setSettings({
-                    ...settings,
-                    social_links: { ...settings.social_links, twitter: e.target.value },
-                  })
-                }
-              />
-            </div>
           </CardContent>
         </Card>
       </div>

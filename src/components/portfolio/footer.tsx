@@ -1,19 +1,17 @@
 import Link from "next/link";
-import { Github, Linkedin, Twitter, Mail } from "lucide-react";
+import { Github, Linkedin, Mail } from "lucide-react";
 import { getSetting } from "@/lib/data";
 
 export async function Footer() {
   const socialLinks = await getSetting<{
     github?: string;
     linkedin?: string;
-    twitter?: string;
   }>("social_links");
   const email = await getSetting<string>("email");
 
   const links = [
     { href: socialLinks?.github, icon: Github, label: "GitHub" },
     { href: socialLinks?.linkedin, icon: Linkedin, label: "LinkedIn" },
-    { href: socialLinks?.twitter, icon: Twitter, label: "Twitter" },
     { href: email ? `mailto:${email}` : undefined, icon: Mail, label: "Email" },
   ].filter((link) => link.href);
 

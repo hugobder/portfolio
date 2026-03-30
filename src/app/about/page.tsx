@@ -17,11 +17,6 @@ export const metadata = {
       "Learn more about Hugo Bruder – Full Stack Developer. My background, skills in React, Next.js, TypeScript, and professional experience.",
     url: "/about",
   },
-  twitter: {
-    title: "About | Hugo Bruder",
-    description:
-      "Learn more about Hugo Bruder – Full Stack Developer. My background, skills in React, Next.js, TypeScript, and professional experience.",
-  },
 };
 
 interface Skill {
