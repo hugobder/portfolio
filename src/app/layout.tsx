@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { GeistSans } from "geist/font/sans";
+import { Outfit, DM_Sans } from "next/font/google";
 import { GeistMono } from "geist/font/mono";
 import { ThemeProvider } from "@/providers/theme-provider";
 import { Navbar } from "@/components/portfolio/navbar";
@@ -7,36 +7,48 @@ import { Footer } from "@/components/portfolio/footer";
 import { Toaster } from "@/components/ui/sonner";
 import "./globals.css";
 
+const outfit = Outfit({
+  subsets: ["latin"],
+  variable: "--font-outfit",
+  display: "swap",
+});
+
+const dmSans = DM_Sans({
+  subsets: ["latin"],
+  variable: "--font-dm-sans",
+  display: "swap",
+});
+
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://bruderhugo.fr";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: "Hugo Bruder | Junior Developer",
+    default: "Hugo Bruder | Développeur Junior",
     template: "%s | Hugo Bruder",
   },
   description:
-    "Junior Developer specializing in modern web applications with React, Next.js, Node.js, and TypeScript. Available for freelance and internship opportunities.",
+    "Développeur Junior spécialisé dans les applications web modernes avec React, Next.js, Node.js et TypeScript. Disponible pour des missions freelance et des stages.",
   keywords: [
     "Hugo Bruder",
-    "Junior Developer",
+    "Développeur Junior",
     "React",
     "Next.js",
     "TypeScript",
     "Node.js",
-    "Web Developer",
+    "Développeur Web",
     "Portfolio",
   ],
   authors: [{ name: "Hugo Bruder", url: siteUrl }],
   creator: "Hugo Bruder",
   openGraph: {
     type: "website",
-    locale: "en_US",
+    locale: "fr_FR",
     url: siteUrl,
     siteName: "Hugo Bruder – Portfolio",
-    title: "Hugo Bruder | Junior Developer",
+    title: "Hugo Bruder | Développeur Junior",
     description:
-      "Junior Developer specializing in modern web applications with React, Next.js, Node.js, and TypeScript.",
+      "Développeur Junior spécialisé dans les applications web modernes avec React, Next.js, Node.js et TypeScript.",
   },
   robots: {
     index: true,
@@ -57,9 +69,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="fr" suppressHydrationWarning>
       <body
-        className={`${GeistSans.variable} ${GeistMono.variable} antialiased min-h-screen flex flex-col`}
+        className={`${outfit.variable} ${dmSans.variable} ${GeistMono.variable} antialiased min-h-screen flex flex-col`}
       >
         <ThemeProvider
           attribute="class"

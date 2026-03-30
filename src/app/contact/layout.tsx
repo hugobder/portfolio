@@ -3,11 +3,11 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Contact",
   description:
-    "Get in touch with Hugo Bruder. Have a project in mind or want to collaborate? Send a message and I'll get back to you as soon as possible.",
+    "Contactez Hugo Bruder. Vous avez un projet en tête ou souhaitez collaborer ? Envoyez un message et je vous répondrai dans les plus brefs délais.",
   openGraph: {
     title: "Contact | Hugo Bruder",
     description:
-      "Get in touch with Hugo Bruder. Have a project in mind or want to collaborate? Send a message and I'll get back to you as soon as possible.",
+      "Contactez Hugo Bruder. Vous avez un projet en tête ou souhaitez collaborer ? Envoyez un message et je vous répondrai dans les plus brefs délais.",
     url: "/contact",
   },
 };

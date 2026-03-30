@@ -3,12 +3,32 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { Card, CardContent } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { toast } from "sonner";
 import { Mail, MapPin, Phone, Send, Loader2 } from "lucide-react";
+
+const CONTACT_INFO = [
+  {
+    icon: Mail,
+    label: "E-mail",
+    value: "hugobruder62@gmail.com",
+    color: "var(--coral)",
+  },
+  {
+    icon: Phone,
+    label: "Téléphone",
+    value: "+33 7 87 29 42 41",
+    color: "var(--electric-blue)",
+  },
+  {
+    icon: MapPin,
+    label: "Localisation",
+    value: "Toulon, France",
+    color: "var(--sunny-yellow)",
+  },
+];
 
 export default function ContactPage() {
   const [isLoading, setIsLoading] = useState(false);
@@ -25,22 +45,20 @@ export default function ContactPage() {
     try {
       const response = await fetch("/api/contact", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
       });
 
       const data = await response.json();
 
       if (response.ok) {
-        toast.success("Message sent successfully!");
+        toast.success("Message envoyé avec succès !");
         setFormData({ name: "", email: "", message: "" });
       } else {
-        toast.error(data.error || "Failed to send message");
+        toast.error(data.error || "Échec de l'envoi du message");
       }
     } catch {
-      toast.error("An error occurred. Please try again.");
+      toast.error("Une erreur s'est produite. Veuillez réessayer.");
     } finally {
       setIsLoading(false);
     }
@@ -49,6 +67,7 @@ export default function ContactPage() {
   return (
     <div className="container mx-auto px-4 py-16">
       <div className="max-w-4xl mx-auto">
+
         {/* Header */}
         <motion.div
           className="text-center mb-16"
@@ -56,10 +75,14 @@ export default function ContactPage() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
         >
-          <h1 className="text-4xl font-bold mb-4">Get in Touch</h1>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Have a project in mind or just want to chat? I&apos;d love to hear from you.
-            Fill out the form below and I&apos;ll get back to you as soon as possible.
+          <p className="text-sm font-bold text-primary flex items-center justify-center gap-2 mb-3">
+            <span className="w-2 h-2 rounded-full bg-primary inline-block" />
+            Discutons ensemble
+          </p>
+          <h1 className="text-4xl font-bold mb-4">Me contacter</h1>
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
+            Vous avez un projet en tête ou souhaitez simplement discuter ? J&apos;adorerais vous entendre.
+            Remplissez le formulaire ci-dessous et je vous répondrai dans les plus brefs délais.
           </p>
         </motion.div>
 
@@ -71,41 +94,22 @@ export default function ContactPage() {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5, delay: 0.1 }}
           >
-            <Card>
-              <CardContent className="p-6 flex items-center gap-4">
-                <div className="p-3 rounded-full bg-primary/10 text-primary">
-                  <Mail className="h-5 w-5" />
-                </div>
-                <div>
-                  <h3 className="font-medium">Email</h3>
-                  <p className="text-sm text-muted-foreground">hugobruder62@gmail.com</p>
-                </div>
-              </CardContent>
-            </Card>
-
-            <Card>
-              <CardContent className="p-6 flex items-center gap-4">
-                <div className="p-3 rounded-full bg-primary/10 text-primary">
-                  <Phone className="h-5 w-5" />
-                </div>
-                <div>
-                  <h3 className="font-medium">Phone</h3>
-                  <p className="text-sm text-muted-foreground">+33 7 87 29 42 41</p>
-                </div>
-              </CardContent>
-            </Card>
-
-            <Card>
-              <CardContent className="p-6 flex items-center gap-4">
-                <div className="p-3 rounded-full bg-primary/10 text-primary">
-                  <MapPin className="h-5 w-5" />
-                </div>
-                <div>
-                  <h3 className="font-medium">Location</h3>
-                  <p className="text-sm text-muted-foreground">Toulon, France</p>
-                </div>
-              </CardContent>
-            </Card>
+            {CONTACT_INFO.map((info) => (
+              <Card key={info.label} style={{ borderTop: `3px solid ${info.color}` }}>
+                <CardContent className="p-5 flex items-center gap-4">
+                  <div
+                    className="p-2.5 rounded-xl text-white flex-shrink-0"
+                    style={{ background: info.color }}
+                  >
+                    <info.icon className="h-4 w-4" />
+                  </div>
+                  <div>
+                    <h3 className="font-semibold text-sm">{info.label}</h3>
+                    <p className="text-sm text-muted-foreground">{info.value}</p>
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
           </motion.div>
 
           {/* Contact Form */}
@@ -117,62 +121,73 @@ export default function ContactPage() {
           >
             <Card>
               <CardContent className="p-6">
-                <form onSubmit={handleSubmit} className="space-y-6">
+                <form onSubmit={handleSubmit} className="space-y-5">
                   <div className="grid sm:grid-cols-2 gap-4">
                     <div className="space-y-2">
-                      <Label htmlFor="name">Name</Label>
+                      <Label htmlFor="name" className="font-semibold">Nom</Label>
                       <Input
                         id="name"
-                        placeholder="Your name"
+                        placeholder="Votre nom"
                         value={formData.name}
                         onChange={(e) =>
                           setFormData({ ...formData, name: e.target.value })
                         }
                         required
+                        className="rounded-xl"
                       />
                     </div>
                     <div className="space-y-2">
-                      <Label htmlFor="email">Email</Label>
+                      <Label htmlFor="email" className="font-semibold">E-mail</Label>
                       <Input
                         id="email"
                         type="email"
-                        placeholder="your@email.com"
+                        placeholder="votre@email.com"
                         value={formData.email}
                         onChange={(e) =>
                           setFormData({ ...formData, email: e.target.value })
                         }
                         required
+                        className="rounded-xl"
                       />
                     </div>
                   </div>
 
                   <div className="space-y-2">
-                    <Label htmlFor="message">Message</Label>
+                    <Label htmlFor="message" className="font-semibold">Message</Label>
                     <Textarea
                       id="message"
-                      placeholder="Tell me about your project..."
+                      placeholder="Parlez-moi de votre projet..."
                       rows={6}
                       value={formData.message}
                       onChange={(e) =>
                         setFormData({ ...formData, message: e.target.value })
                       }
                       required
+                      className="rounded-xl resize-none"
                     />
                   </div>
 
-                  <Button type="submit" className="w-full" disabled={isLoading}>
+                  <button
+                    type="submit"
+                    disabled={isLoading}
+                    className="w-full inline-flex items-center justify-center gap-2 h-12 rounded-full font-semibold text-white transition-all duration-200 hover:opacity-90 hover:scale-[1.01] disabled:opacity-60 disabled:cursor-not-allowed disabled:scale-100"
+                    style={{
+                      background: "var(--coral)",
+                      boxShadow: "0 4px 20px oklch(0.65 0.22 28 / 30%)",
+                    }}
+                  >
                     {isLoading ? (
                       <>
-                        <Loader2 className="h-4 w-4 mr-2 animate-spin" />
-                        Sending...
+                        <Loader2 className="h-4 w-4 animate-spin" />
+                        Envoi en cours...
                       </>
                     ) : (
                       <>
-                        <Send className="h-4 w-4 mr-2" />
-                        Send Message
+                        <Send className="h-4 w-4" />
+                        Envoyer le message
                       </>
                     )}
-                  </Button>
+                  </button>
                 </form>
               </CardContent>
             </Card>

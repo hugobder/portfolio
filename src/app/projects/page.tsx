@@ -4,13 +4,13 @@ import { getPublishedProjects } from "@/lib/data";
 export const dynamic = "force-dynamic";
 
 export const metadata = {
-  title: "Projects",
+  title: "Projets",
   description:
-    "Browse Hugo Bruder's portfolio of web development projects built with React, Next.js, TypeScript, and Node.js.",
+    "Découvrez le portfolio de projets web de Hugo Bruder, réalisés avec React, Next.js, TypeScript et Node.js.",
   openGraph: {
-    title: "Projects | Hugo Bruder",
+    title: "Projets | Hugo Bruder",
     description:
-      "Browse Hugo Bruder's portfolio of web development projects built with React, Next.js, TypeScript, and Node.js.",
+      "Découvrez le portfolio de projets web de Hugo Bruder, réalisés avec React, Next.js, TypeScript et Node.js.",
     url: "/projects",
   },
 };
@@ -21,10 +21,14 @@ export default async function ProjectsPage() {
   return (
     <div className="container mx-auto px-4 py-16">
       <div className="max-w-3xl mb-12">
-        <h1 className="text-4xl font-bold mb-4">Projects</h1>
-        <p className="text-lg text-muted-foreground">
-          A collection of projects I&apos;ve worked on. Each project represents
-          my passion for creating impactful solutions.
+        <p className="text-sm font-bold text-primary flex items-center gap-2 mb-3">
+          <span className="w-2 h-2 rounded-full bg-primary inline-block" />
+          Ce que j&apos;ai construit
+        </p>
+        <h1 className="text-4xl font-bold mb-4">Projets</h1>
+        <p className="text-lg text-muted-foreground leading-relaxed">
+          Une collection de projets sur lesquels j&apos;ai travaillé. Chaque projet reflète
+          ma passion pour la création de solutions à fort impact.
         </p>
       </div>
 
@@ -35,9 +39,9 @@ export default async function ProjectsPage() {
           ))}
         </div>
       ) : (
-        <div className="text-center py-20">
+        <div className="text-center py-24 bg-muted/30 rounded-3xl bg-dots">
           <p className="text-muted-foreground text-lg">
-            No projects yet. Check back soon!
+            Aucun projet pour l&apos;instant. Revenez bientôt !
           </p>
         </div>
       )}

@@ -81,7 +81,7 @@ export const defaultSettings = {
   site_title: "Portfolio",
   name: "Bruder Hugo",
   title: "Full Stack Developer",
-  bio: "I build modern web applications with cutting-edge technologies. Passionate about creating elegant solutions to complex problems.",
+  bio: "Je crée des applications web modernes avec des technologies de pointe. Passionné par la création de solutions élégantes à des problèmes complexes.",
   email: "hugobruder62@gmail.com",
   social_links: {
     github: "https://github.com",

@@ -1,20 +1,19 @@
 import { getSetting } from "@/lib/data";
 import { SkillBar } from "@/components/portfolio/skill-bar";
 import { Card, CardContent } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { Download, Mail } from "lucide-react";
 
 export const dynamic = "force-dynamic";
 
 export const metadata = {
-  title: "About",
+  title: "À propos",
   description:
-    "Learn more about Hugo Bruder – Full Stack Developer. My background, skills in React, Next.js, TypeScript, and professional experience.",
+    "En savoir plus sur Hugo Bruder – Développeur Full Stack. Mon parcours, mes compétences en React, Next.js, TypeScript et mon expérience professionnelle.",
   openGraph: {
-    title: "About | Hugo Bruder",
+    title: "À propos | Hugo Bruder",
     description:
-      "Learn more about Hugo Bruder – Full Stack Developer. My background, skills in React, Next.js, TypeScript, and professional experience.",
+      "En savoir plus sur Hugo Bruder – Développeur Full Stack. Mon parcours, mes compétences en React, Next.js, TypeScript et mon expérience professionnelle.",
     url: "/about",
   },
 };
@@ -24,9 +23,15 @@ interface Skill {
   level: number;
 }
 
+const STAT_CARDS = [
+  { value: "2+", label: "Ans d'expérience", color: "var(--coral)" },
+  { value: "10+", label: "Projets réalisés", color: "var(--electric-blue)" },
+  { value: "5+", label: "Technologies", color: "var(--sunny-yellow)" },
+];
+
 export default async function AboutPage() {
-  const name = await getSetting<string>("name") || "John Doe";
-  const title = await getSetting<string>("title") || "Full Stack Developer";
+  const name = await getSetting<string>("name") || "Hugo Bruder";
+  const title = await getSetting<string>("title") || "Développeur Full Stack";
   const bio = await getSetting<string>("bio");
   const skills = await getSetting<Skill[]>("skills") || [];
 
@@ -57,80 +62,90 @@ export default async function AboutPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
       <div className="max-w-4xl mx-auto">
+
         {/* Header */}
         <div className="text-center mb-16">
-          <h1 className="text-4xl font-bold mb-4">About Me</h1>
+          <p className="text-sm font-bold text-primary flex items-center justify-center gap-2 mb-3">
+            <span className="w-2 h-2 rounded-full bg-primary inline-block" />
+            Mon parcours
+          </p>
+          <h1 className="text-4xl font-bold mb-4">À propos de moi</h1>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Get to know me better - my background, skills, and what drives me.
+            Apprenez à me connaître – mon parcours, mes compétences et ce qui me motive.
           </p>
         </div>
 
-        {/* Bio Section */}
+        {/* Bio + Stats */}
         <div className="grid md:grid-cols-2 gap-12 mb-16">
           <div>
-            <h2 className="text-2xl font-bold mb-4">Who I Am</h2>
-            <div className="space-y-4 text-muted-foreground">
+            <h2 className="text-2xl font-bold mb-4">Qui je suis</h2>
+            <div className="space-y-4 text-muted-foreground leading-relaxed">
               <p>
-                Hi, I&apos;m <span className="text-foreground font-medium">{name}</span>,
-                a {title}.
+                Bonjour, je suis{" "}
+                <span className="text-foreground font-semibold">{name}</span>,{" "}
+                {title}.
               </p>
               <p>
-                {bio || "I'm passionate about creating elegant solutions to complex problems. With years of experience in web development, I've worked on a variety of projects ranging from small business websites to large-scale enterprise applications."}
+                {bio ||
+                  "Je suis passionné par la création de solutions élégantes à des problèmes complexes. Avec des années d'expérience en développement web, j'ai travaillé sur une variété de projets allant des sites pour petites entreprises aux applications d'envergure."}
               </p>
               <p>
-                When I&apos;m not coding, you can find me exploring new technologies,
-                contributing to open-source projects, or sharing knowledge with
-                the developer community.
+                Quand je ne code pas, vous pouvez me trouver en train d&apos;explorer de nouvelles technologies,
+                de contribuer à des projets open-source ou de partager mes connaissances avec
+                la communauté des développeurs.
               </p>
             </div>
-            <div className="flex gap-4 mt-8">
-              <Button asChild>
-                <Link href="/contact">
-                  <Mail className="h-4 w-4 mr-2" />
-                  Contact Me
-                </Link>
-              </Button>
-              <Button variant="outline" asChild>
-                <a href="/cv.pdf" download>
-                  <Download className="h-4 w-4 mr-2" />
-                  Download CV
-                </a>
-              </Button>
+            <div className="flex gap-3 mt-8 flex-wrap">
+              <Link
+                href="/contact"
+                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full font-semibold text-white text-sm transition-all duration-200 hover:opacity-90 hover:scale-105"
+                style={{ background: "var(--coral)", boxShadow: "0 4px 16px oklch(0.65 0.22 28 / 30%)" }}
+              >
+                <Mail className="h-4 w-4" />
+                Me contacter
+              </Link>
+              <a
+                href="/cv.pdf"
+                download
+                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full font-semibold text-sm border-2 transition-all duration-200 hover:text-white hover:scale-105"
+                style={{ borderColor: "var(--electric-blue)", color: "var(--electric-blue)" }}
+                onMouseEnter={(e) => {
+                  (e.currentTarget as HTMLElement).style.background = "var(--electric-blue)";
+                }}
+                onMouseLeave={(e) => {
+                  (e.currentTarget as HTMLElement).style.background = "transparent";
+                }}
+              >
+                <Download className="h-4 w-4" />
+                Télécharger mon CV
+              </a>
             </div>
           </div>
 
           {/* Stats */}
           <div className="grid grid-cols-2 gap-4">
-            <Card>
-              <CardContent className="p-6 text-center">
-                <div className="text-4xl font-bold text-primary mb-2">2+</div>
-                <div className="text-sm text-muted-foreground">
-                  Years Experience
-                </div>
-              </CardContent>
-            </Card>
-            <Card>
-              <CardContent className="p-6 text-center">
-                <div className="text-4xl font-bold text-primary mb-2">10+</div>
-                <div className="text-sm text-muted-foreground">
-                  Projects Completed
-                </div>
-              </CardContent>
-            </Card>
-            <Card>
-              <CardContent className="p-6 text-center">
-                <div className="text-4xl font-bold text-primary mb-2">5+</div>
-                <div className="text-sm text-muted-foreground">
-                  Technologies
-                </div>
-              </CardContent>
-            </Card>
+            {STAT_CARDS.map((stat) => (
+              <Card key={stat.label} style={{ borderTop: `3px solid ${stat.color}` }}>
+                <CardContent className="p-6 text-center">
+                  <div className="text-4xl font-black mb-1" style={{ color: stat.color }}>
+                    {stat.value}
+                  </div>
+                  <div className="text-sm text-muted-foreground font-medium">{stat.label}</div>
+                </CardContent>
+              </Card>
+            ))}
           </div>
         </div>
 
         {/* Skills Section */}
         <div className="mb-16">
-          <h2 className="text-2xl font-bold mb-8 text-center">Skills & Expertise</h2>
+          <div className="text-center mb-8">
+            <p className="text-sm font-bold text-primary flex items-center justify-center gap-2 mb-2">
+              <span className="w-2 h-2 rounded-full bg-primary inline-block" />
+              Ce que je maîtrise
+            </p>
+            <h2 className="text-2xl font-bold">Compétences &amp; expertise</h2>
+          </div>
           {skills.length > 0 ? (
             <div className="grid md:grid-cols-2 gap-6">
               {skills.map((skill, index) => (
@@ -147,30 +162,49 @@ export default async function AboutPage() {
               <SkillBar name="JavaScript" level={70} index={0} />
               <SkillBar name="TypeScript" level={50} index={1} />
               <SkillBar name="React" level={60} index={2} />
-              <SkillBar name="Node.js" level={60} index={4} />
-              <SkillBar name="Python" level={70} index={5} />
+              <SkillBar name="Node.js" level={60} index={3} />
+              <SkillBar name="Python" level={70} index={4} />
             </div>
           )}
         </div>
 
         {/* Experience Section */}
         <div>
-          <h2 className="text-2xl font-bold mb-8 text-center">Experience</h2>
+          <div className="text-center mb-8">
+            <p className="text-sm font-bold text-primary flex items-center justify-center gap-2 mb-2">
+              <span className="w-2 h-2 rounded-full bg-primary inline-block" />
+              Mon parcours professionnel
+            </p>
+            <h2 className="text-2xl font-bold">Expérience</h2>
+          </div>
           <div className="space-y-6">
-            <Card>
+            <Card style={{ borderLeft: "4px solid var(--coral)" }}>
               <CardContent className="p-6">
                 <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-2">
-                  <h3 className="text-lg font-semibold">Internship Developer</h3>
-                  <span className="text-sm text-muted-foreground">2024 - Present</span>
+                  <h3 className="text-lg font-bold">Développeur en stage</h3>
+                  <span
+                    className="text-xs font-semibold px-3 py-1 rounded-full mt-1 md:mt-0"
+                    style={{
+                      background: "oklch(0.65 0.22 28 / 10%)",
+                      color: "var(--coral)",
+                    }}
+                  >
+                    2024 – Présent
+                  </span>
                 </div>
-                <p className="text-primary font-medium mb-2">CashMag</p>
-                <p className="text-muted-foreground">
-                  Learning basics of development and best practices in software development. Working on real-world projects and collaborating with experienced developers to enhance my skills and knowledge in the field.
+                <p className="font-semibold mb-2" style={{ color: "var(--electric-blue)" }}>
+                  CashMag
+                </p>
+                <p className="text-muted-foreground leading-relaxed">
+                  Apprentissage des bases du développement et des bonnes pratiques en génie logiciel.
+                  Travail sur des projets concrets et collaboration avec des développeurs expérimentés
+                  pour renforcer mes compétences dans le domaine.
                 </p>
               </CardContent>
             </Card>
           </div>
         </div>
+
       </div>
     </div>
   );
