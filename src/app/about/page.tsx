@@ -2,7 +2,8 @@ import { getSetting } from "@/lib/data";
 import { SkillBar } from "@/components/portfolio/skill-bar";
 import { Card, CardContent } from "@/components/ui/card";
 import Link from "next/link";
-import { Download, Mail } from "lucide-react";
+import { Mail } from "lucide-react";
+import { CvDownloadButton } from "@/components/portfolio/cv-download-button";
 
 export const dynamic = "force-dynamic";
 
@@ -104,21 +105,7 @@ export default async function AboutPage() {
                 <Mail className="h-4 w-4" />
                 Me contacter
               </Link>
-              <a
-                href="/cv.pdf"
-                download
-                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full font-semibold text-sm border-2 transition-all duration-200 hover:text-white hover:scale-105"
-                style={{ borderColor: "var(--electric-blue)", color: "var(--electric-blue)" }}
-                onMouseEnter={(e) => {
-                  (e.currentTarget as HTMLElement).style.background = "var(--electric-blue)";
-                }}
-                onMouseLeave={(e) => {
-                  (e.currentTarget as HTMLElement).style.background = "transparent";
-                }}
-              >
-                <Download className="h-4 w-4" />
-                Télécharger mon CV
-              </a>
+              <CvDownloadButton />
             </div>
           </div>
 
