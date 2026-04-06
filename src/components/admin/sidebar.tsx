@@ -7,6 +7,7 @@ import { Separator } from "@/components/ui/separator";
 import {
   LayoutDashboard,
   FolderKanban,
+  Briefcase,
   Settings,
   MessageSquare,
   LogOut,
@@ -17,6 +18,7 @@ import { toast } from "sonner";
 const navItems = [
   { href: "/admin", icon: LayoutDashboard, label: "Dashboard" },
   { href: "/admin/projects", icon: FolderKanban, label: "Projects" },
+  { href: "/admin/professional-work", icon: Briefcase, label: "Réalisations" },
   { href: "/admin/messages", icon: MessageSquare, label: "Messages" },
   { href: "/admin/settings", icon: Settings, label: "Settings" },
 ];
