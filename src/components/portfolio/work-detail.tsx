@@ -123,31 +123,35 @@ export function WorkDetail({ work }: WorkDetailProps) {
       <div className="relative max-w-3xl mx-auto">
         {/* Left arrow */}
         {hasMultiplePages && (
-          <div className="absolute -left-16 top-0 bottom-0 hidden lg:flex items-center">
-            <Button
-              variant="outline"
-              size="icon"
-              className="rounded-full"
-              onClick={goPrev}
-              disabled={currentPage === 0}
-            >
-              <ChevronLeft className="h-4 w-4" />
-            </Button>
+          <div className="absolute -left-16 top-0 bottom-0 hidden lg:block">
+            <div className="sticky top-1/2 -translate-y-1/2">
+              <Button
+                variant="outline"
+                size="icon"
+                className="rounded-full"
+                onClick={goPrev}
+                disabled={currentPage === 0}
+              >
+                <ChevronLeft className="h-4 w-4" />
+              </Button>
+            </div>
           </div>
         )}
 
         {/* Right arrow */}
         {hasMultiplePages && (
-          <div className="absolute -right-16 top-0 bottom-0 hidden lg:flex items-center">
-            <Button
-              variant="outline"
-              size="icon"
-              className="rounded-full"
-              onClick={goNext}
-              disabled={currentPage === pages.length - 1}
-            >
-              <ChevronRight className="h-4 w-4" />
-            </Button>
+          <div className="absolute -right-16 top-0 bottom-0 hidden lg:block">
+            <div className="sticky top-1/2 -translate-y-1/2">
+              <Button
+                variant="outline"
+                size="icon"
+                className="rounded-full"
+                onClick={goNext}
+                disabled={currentPage === pages.length - 1}
+              >
+                <ChevronRight className="h-4 w-4" />
+              </Button>
+            </div>
           </div>
         )}
 
