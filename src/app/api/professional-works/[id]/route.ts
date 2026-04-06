@@ -51,6 +51,13 @@ export async function PUT(
       order,
     } = body;
 
+    if (!title || !slug || !description || !company) {
+      return NextResponse.json(
+        { error: "Title, slug, description, and company are required" },
+        { status: 400 }
+      );
+    }
+
     const updatedWork = await db
       .update(professionalWorks)
       .set({
