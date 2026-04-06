@@ -1,4 +1,4 @@
-import { db, projects, settings, messages } from "./db";
+import { db, projects, settings, messages, professionalWorks } from "./db";
 import { eq, desc } from "drizzle-orm";
 
 export async function getSettings() {
@@ -74,6 +74,31 @@ export async function getUnreadMessagesCount() {
     .from(messages)
     .where(eq(messages.read, false));
   return result.length;
+}
+
+export async function getPublishedProfessionalWorks() {
+  return db
+    .select()
+    .from(professionalWorks)
+    .where(eq(professionalWorks.status, "published"))
+    .orderBy(desc(professionalWorks.order), desc(professionalWorks.createdAt));
+}
+
+export async function getAllProfessionalWorks() {
+  return db
+    .select()
+    .from(professionalWorks)
+    .orderBy(desc(professionalWorks.createdAt));
+}
+
+export async function getProfessionalWorkBySlug(slug: string) {
+  const result = await db.select().from(professionalWorks).where(eq(professionalWorks.slug, slug));
+  return result[0] || null;
+}
+
+export async function getProfessionalWorkById(id: number) {
+  const result = await db.select().from(professionalWorks).where(eq(professionalWorks.id, id));
+  return result[0] || null;
 }
 
 // Default settings for initial setup
