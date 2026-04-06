@@ -47,6 +47,23 @@ sqlite.exec(`
     read INTEGER DEFAULT 0,
     created_at INTEGER
   );
+
+  CREATE TABLE IF NOT EXISTS professional_works (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    title TEXT NOT NULL,
+    slug TEXT NOT NULL UNIQUE,
+    description TEXT NOT NULL,
+    company TEXT NOT NULL,
+    role TEXT,
+    image_url TEXT,
+    technologies TEXT DEFAULT '[]',
+    pages TEXT DEFAULT '[]',
+    featured INTEGER DEFAULT 0,
+    status TEXT DEFAULT 'draft',
+    "order" INTEGER DEFAULT 0,
+    created_at INTEGER,
+    updated_at INTEGER
+  );
 `);
 
 export const db = drizzle(sqlite, { schema });

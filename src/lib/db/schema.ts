@@ -32,7 +32,33 @@ export const messages = sqliteTable("messages", {
   createdAt: integer("created_at", { mode: "timestamp" }).$defaultFn(() => new Date()),
 });
 
+export interface ProfessionalWorkPage {
+  title: string;
+  content?: string;
+  screenshots?: { url: string; caption?: string }[];
+  codeSnippets?: { title: string; language: string; code: string }[];
+}
+
+export const professionalWorks = sqliteTable("professional_works", {
+  id: integer("id").primaryKey({ autoIncrement: true }),
+  title: text("title").notNull(),
+  slug: text("slug").notNull().unique(),
+  description: text("description").notNull(),
+  company: text("company").notNull(),
+  role: text("role"),
+  imageUrl: text("image_url"),
+  technologies: text("technologies", { mode: "json" }).$type<string[]>().default([]),
+  pages: text("pages", { mode: "json" }).$type<ProfessionalWorkPage[]>().default([]),
+  featured: integer("featured", { mode: "boolean" }).default(false),
+  status: text("status", { enum: ["draft", "published"] }).default("draft"),
+  order: integer("order").default(0),
+  createdAt: integer("created_at", { mode: "timestamp" }).$defaultFn(() => new Date()),
+  updatedAt: integer("updated_at", { mode: "timestamp" }).$defaultFn(() => new Date()),
+});
+
 export type Project = typeof projects.$inferSelect;
 export type NewProject = typeof projects.$inferInsert;
 export type Setting = typeof settings.$inferSelect;
 export type Message = typeof messages.$inferSelect;
+export type ProfessionalWork = typeof professionalWorks.$inferSelect;
+export type NewProfessionalWork = typeof professionalWorks.$inferInsert;
