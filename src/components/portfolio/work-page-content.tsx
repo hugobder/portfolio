@@ -8,7 +8,7 @@ interface WorkPageContentProps {
 
 export function WorkPageContent({ page }: WorkPageContentProps) {
   return (
-    <div>
+    <div className="bg-muted rounded-2xl shadow-[0_2px_4px_rgba(0,0,0,0.05),_0_16px_40px_rgba(0,0,0,0.10)] p-8 md:p-10">
       <h2
         className="text-xl font-bold mb-4"
         style={{ fontFamily: "var(--font-outfit)" }}
