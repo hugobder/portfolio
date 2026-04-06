@@ -1,5 +1,5 @@
 import ReactMarkdown from "react-markdown";
-import Image from "next/image";
+import { ScreenshotGallery } from "./screenshot-gallery";
 import type { ProfessionalWorkPage } from "@/lib/db/schema";
 
 interface WorkPageContentProps {
@@ -23,30 +23,7 @@ export function WorkPageContent({ page }: WorkPageContentProps) {
       )}
 
       {page.screenshots && page.screenshots.length > 0 && (
-        <div className="mb-8">
-          <h3 className="text-sm font-semibold uppercase tracking-wider text-muted-foreground mb-3">
-            Captures d&apos;écran
-          </h3>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-            {page.screenshots.map((screenshot, i) => (
-              <div key={i} className="space-y-1.5">
-                <div className="relative aspect-video overflow-hidden rounded-lg bg-muted">
-                  <Image
-                    src={screenshot.url}
-                    alt={screenshot.caption || `Screenshot ${i + 1}`}
-                    fill
-                    className="object-cover"
-                  />
-                </div>
-                {screenshot.caption && (
-                  <p className="text-xs text-muted-foreground text-center">
-                    {screenshot.caption}
-                  </p>
-                )}
-              </div>
-            ))}
-          </div>
-        </div>
+        <ScreenshotGallery screenshots={page.screenshots} />
       )}
 
       {page.codeSnippets && page.codeSnippets.length > 0 && (
